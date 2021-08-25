@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block extra_css %}
+      <link type="text/css" rel="stylesheet" href="{% static 'assets\css\search.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+    <main>
+{% include 'partials/left-bar.html' %}
+            <div class="hamburger"><i class="fas fa-align-left"></i></div>
+            <div class="anasayfa-main-center">
+                <div class="anasayfa-main-center-header">
+                    <a href="" class="anasayfa-main-center-header-uyeler">Üyeler</a>
+                    <a href="" class="anasayfa-main-center-header-uyeler">T3Forum</a>
+                    <a href="" class="anasayfa-main-center-header-uyeler">Takvim</a>
+                    <a href="" class="anasayfa-main-center-header-uyeler">Mentor</a>
+                    <a href="" class="anasayfa-main-center-header-uyeler">Gruplar</a>
+                </div>
+                <div class="anasayfa-main-center-left">
+                    {% if not user_list and  not event %}
+                    <h3>Sonuç Bulunamadı..</h3>
+                    {% endif %}
+                    {% if user_list %}
+                    <div class="anasayfa-main-center-left-card-1">
+                        <div class="card-1-header-text">Üyeler</div>
+                        {% for member in user_list %}
+
+                        <a href="" class="card-1-profile">
+                            <div class="card-1-profile-photo-1">
+                                {% if member.image %}
+                                <img src="{{member.image.url}}" width="40" height="40" alt="Profil Fotoğrafı">
+                                {% else %}
+                                <img src="{{site_setting.default_profile_image.url}}" width="40" height="40" alt="Profil Fotoğrafı">
+                                {% endif %}
+                            </div>
+                            <div class="card-1-information-1">
+                                <div class="card-1-name">{{member.user.get_full_name}}</div>
+                                <div class="card-1-task">--</div>
+                            </div>
+                            <div class="card-1-status">--</div>
+                        </a>
+                        <div class="dividing-line-t3forum"></div>
+                        {% endfor %}
+                        <div class="dividing-line-bottom"></div>
+                        <a href="" style="text-decoration: none;"><div class="card-bottom-text">Daha Fazla Sonuç Görüntüle</div></a>
+                    </div>
+                    {% endif %}
+
+                    {% if forum_list %}
+                    <div class="anasayfa-main-center-left-card-1">
+                        <div class="card-1-header-text">T3 Forum</div>
+                        {% for forum in forum_list %}
+                        <a href="" class="card-1-profile">
+                            <div class="card-1-profile-photo-1"><img src="../Resimler/tasarım.png" width="40" height="40" alt="T3 Sosyal Arama Sonuçları Profil Fotoğrafı"></div>
+                            <div class="card-1-information-1">
+                                <div class="card-2-name">{{forum.question}}</div>
+                                <div class="card-1-task-t3forum">-</div>
+                            </div>
+                        </a>
+                        <div class="dividing-line-t3forum"></div>
+                         {% endfor %}
+
+                        <div class="dividing-line-bottom"></div>
+                        <a href="" style="text-decoration: none;"><div class="card-bottom-text">Daha Fazla Sonuç Görüntüle</div></a>
+                    </div>
+                    {% endif %}
+
+                    {% if event_list %}
+                    <div class="anasayfa-main-center-left-card-1">
+                        <div class="card-1-header-text">Takvim</div>
+                        {% for event in event_list %}
+                        <a href="" class="card-1-profile">
+                            {% if event.image %}
+                            <div class="card-1-profile-photo-1"><img src="{{event.image.url}}" width="40" height="40" alt="T3 Sosyal Arama Sonuçları Profil Fotoğrafı"></div>
+                            {% else %}
+                            <div class="card-1-profile-photo-1"><img src="" width="40" height="40" alt="T3 Sosyal Arama Sonuçları Profil Fotoğrafı"></div>
+                            {% endif %}
+                            <div class="card-1-information-1">
+                                <div class="card-2-name">{{event.title}}</div>
+                                <div class="card-1-task-takvim">{{event.description}} - {{event.start_time}}</div>
+                            </div>
+                        </a>
+                        <div class="dividing-line-t3forum"></div>
+                        {% endfor %}
+
+                        <div class="dividing-line-bottom"></div>
+                        <a href="" style="text-decoration: none;"><div class="card-bottom-text">Daha Fazla Sonuç Görüntüle</div></a>
+                    </div>                    
+                    {% endif %}
+
+                    {% if mentor_list %}
+                    <div class="anasayfa-main-center-left-card-1">
+                        <div class="card-1-header-text">Mentor</div>
+                        {% for mentor in mentor_list %}
+                        <a href="" class="card-1-profile">
+                                {% if mentor.image %}
+                                <img src="{{mentor.image.url}}" width="40" height="40" alt="T3 Sosyal Arama Sonuçları Profil Fotoğrafı">
+                                {% else %}
+                                <img src="{{site_setting.default_profile_image.url}}" width="40" height="40" alt="T3 Sosyal Arama Sonuçları Profil Fotoğrafı">
+                                {% endif %}                            <div class="card-1-information-1">
+                                <div class="card-2-name">Hasan Kaan Doğan</div>
+                                <div class="card-1-task-mentor">Yazılım</div>
+                            </div>
+                        </a>
+                        <div class="dividing-line-t3forum"></div>
+                        {% endfor %}
+                        <div class="dividing-line-bottom"></div>
+                        <a href="" style="text-decoration: none;"><div class="card-bottom-text">Daha Fazla Sonuç Görüntüle</div></a>
+                    </div>
+                    {% endif %}
+
+
+                    {% if group_list %}
+                    <div class="anasayfa-main-center-left-card-1">
+                        <div class="card-1-header-text">Gruplar</div>
+                        {% for group in group_list %}
+                        <a href="" class="card-1-profile">
+                            {% if group.image %}
+                            <div class="card-1-profile-photo-1"><img src="{{ group.image.url}}" width="40" height="40" alt="T3 Sosyal Arama Sonuçları Profil Fotoğrafı"></div>
+                           {% else %}
+                            <div class="card-1-profile-photo-1"><img src="" width="40" height="40" alt="T3 Sosyal Arama Sonuçları Profil Fotoğrafı"></div>
+                             {% endif %}
+                            <div class="card-1-information-1">
+                                <div class="card-2-name">{{group.text}}</div>
+                                <div class="card-1-task-gruplar">{{group.user.count}} katılımcı</div>
+                            </div>
+                        </a>
+                        <div class="dividing-line-t3forum"></div>
+                        {% endfor %}
+                        <div class="dividing-line-bottom"></div>
+                        <a href="" style="text-decoration: none;"><div class="card-bottom-text">Daha Fazla Sonuç Görüntüle</div></a>
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="anasayfa-main-center-right">
+                    <div class="calendar" style="width: 400px;">
+                        <input type="text" id="picker" class="calendar-input">
+                    </div>
+                                   {% for event in events %}
+                    <a href="" class="anasayfa-main-center-right-girisimci">
+                        <img src="{{event.image.url}}" width="22" height="15"
+                             alt="T3 Sosyal Ağ Takvim İkonları">
+                        <div class="anasayfa-main-center-right-akran-text">{{event.title}}</div>
+                    </a>
+                 {% endfor event in events %}
+
+                </div>
+            </div>
+ {% include 'partials/right-bar.html' %}
+        </div>
+    </main>
+
+
+
+{% endblock content %}
+{% block extra_script %}
+<script src="{% static 'assets\js\profile.js' %}"></script>
+{% endblock extra_script %}

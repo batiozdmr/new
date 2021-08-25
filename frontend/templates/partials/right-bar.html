@@ -1,0 +1,22 @@
+<div class="anasayfa-main-right">
+    <a href="" class="main-center-right-plus">
+        <img src="../../static/assets/img/plus.png" alt="T3 Main Center Right Plus Icon" width="19" height="18">
+    </a>
+
+
+
+    {% for conversation in conversations %}
+
+        <a href="" class="main-center-right-profile-1">
+            <img src="../../static/assets/img/ProfilePicture.png" alt="T3 Main Center Right Profile Icon 1" width="48"
+                 height="48">
+        </a>
+
+    {% empty %}
+
+        Gelen Kutusu Boş
+
+    {% endfor %}
+</div>
+<div class="angle-left"><i class="fas fa-angle-left"></i></div>
+<div class="angle-right"><i class="fas fa-angle-right"></i></div>

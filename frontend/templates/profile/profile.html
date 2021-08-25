@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block extra_css %}
+      <link type="text/css" rel="stylesheet" href="{% static 'assets\css\profile.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+
+
+
+    <main>
+        {% include 'partials/left-bar.html' %}
+            <div class="hamburger"><i class="fas fa-align-left"></i></div>
+            <div class="anasayfa-main-center">
+                <div class="anasayfa-main-center-profile">
+
+                    <div class="anasayfa-main-center-profile-photo">
+                        {% if profile.image %}
+                        <img src="{{profile.image.url}}" alt="T3 Hesabım Profil Fotoğrafı">
+                    {% else %}
+                     <img src="{{site_setting.default_profile_image.url}}" alt="T3 Hesabım Profil Fotoğrafı">
+
+                    {% endif %}
+                        </div>
+                    <div class="anasayfa-main-center-information">
+                        <div class="anasayfa-main-center-profile-name">{{profile.user.get_full_name }}</div>
+                        {% if profile.department or  profile.school %}
+                        <div class="anasayfa-main-center-profile-department">{{profile.department}}<br>{{profile.schools}}</div>
+                        {% endif %}
+                        <!-- <div class="anasayfa-main-center-profile-university"></div> -->
+                        <div class="anasayfa-main-center-profile-social-media">
+                            <a href="{{profile.facebook.url}}" class="facebook-icon"><img src="../../../static/assets/img/facebook_icon.png" alt="Facebook Icon"></a>
+                            <a href="{{profile.instagram}}" class="instagram-icon"><img src="../../../static/assets/img/instagram_icon.png" alt="Facebook Icon" width="16" height="18"></a>
+                            <a href="{{profile.twitter}}" class="twitter-icon"><img src="../../../static/assets/img/twitter_icon.png" alt="Facebook Icon" width="18" height="15"></a>
+                            <a href="{{profile.hangouts}}" class="hangouts-icon"><img src="../../../static/assets/img/hangouts_icon.png" alt="Facebook Icon" width="16" height="16"></a>
+                            <a href="{{profile.discord}}" class="discord-icon"><img src="../../../static/assets/img/discord_icon.png" alt="Facebook Icon" width="18" height="20"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="anasayfa-main-center-text">{{profile.biography}}</div>
+                <div class="anasayfa-main-center-articles">
+                    <div class="anasayfa-main-center-son-yazilar-text">Son Yazılar</div>
+                    <div class="anasayfa-main-center-son-yazilar-card-area">
+                        {% for post in posts %}
+                        <a href="" class="anasayfa-main-center-son-yazilar-card">
+                            {% if post.image %}
+                            <div class="anasayfa-main-center-son-yazilar-card-photo"><img src="{{ post.image.url }}" width="250" height="200" alt="T3 Hesabım Son Yazılar Card Fotoğrafı"></div>
+                            {% else %}
+                            <div class="anasayfa-main-center-son-yazilar-card-photo"><img src="" width="250" height="200" alt="T3 Hesabım Son Yazılar Card Fotoğrafı"></div>
+                            {% endif %}
+                            <div class="anasayfa-main-center-son-yazilar-card-text">{{ post.content|safe }}</div>
+                            <div class="anasayfa-main-center-son-yazilar-card-details">
+                                <div class="anasayfa-main-center-son-yazilar-card-date">{{ post.date }}</div>
+                                <div class="anasayfa-main-center-son-yazilar-card-viewing">  Görüntülenme</div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    <div class="anasayfa-main-center-basarilar-text">Başarılar</div>
+                    <div class="anasayfa-main-center-basarilar-card-area">
+                        {% for achievement in profile.achievement.all %}
+                        <a href="" class="anasayfa-main-center-basarilar-card">
+                            {% if achievement.image %}
+                            <div class="anasayfa-main-center-basarilar-card-photo"><img src="{{achievement.image.url}}" width="128" height="142" alt="T3 Hesabım Başarılar Card Fotoğrafı"></div>
+                            {% else %}
+                             <div class="anasayfa-main-center-basarilar-card-photo"><img src="" width="128" height="142" alt="T3 Hesabım Başarılar Card Fotoğrafı"></div>
+                            {% endif %}
+                            <div class="anasayfa-main-center-basarilar-card-text">{{achievement.text}}</div>
+                            <div class="anasayfa-main-center-basarilar-card-details">{{achievement.content|safe}}</div>
+                        </a>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div class="anasayfa-main-center-gruplar-text">Gruplar</div>
+                    <div class="anasayfa-main-center-gruplar-card-area">
+
+                        {% for team in teams %}
+                        <a href="" class="anasayfa-main-center-gruplar-card">
+                            <div class="anasayfa-main-center-gruplar-card-photo">
+                                {% for usr in team.all_user %}
+                                {% if usr.image %}
+                                <img src="{{usr.image.url}}" width="70" height="70" alt="{{usr.user.username}}">
+                                {% else %}
+                                <img src="{{site_setting.default_profile_image.url }}" width="70" height="70" alt="{{usr.user.username}}">
+                                {% endif %}
+                                {% endfor %}
+                                <div class="anasayfa-main-center-gruplar-card-photo-number">+{{team.count }}</div>
+                            </div>
+                            <div class="anasayfa-main-center-gruplar-card-text">{{team.text}}</div>
+                            <div class="anasayfa-main-center-gruplar-card-details">{{team.explanation}}</div>
+                        </a>
+                    {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+             {% include 'partials/right-bar.html' %}
+        </div>
+    </main>
+    
+
+
+{% endblock content %}
+{% block extra_script %}
+<script src="{% static 'assets\js\profile.js' %}"></script>
+{% endblock extra_script %}

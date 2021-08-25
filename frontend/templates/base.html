@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Language" content="tr">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Competible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link type="image/png" rel="icon" sizes="91x80" href="../../static/assets/img/t3_favicon.png">
+    <meta name="rating" content="general">
+    <meta name="copyright" content="Copyright &copy;">
+    <meta name="robots" content="index, follow, noarchive">
+    <meta name="revisit-after" content="7 Days">
+    <!-- <meta name="reply-to" content=""> -->
+    <meta name="author" content="{{ site_setting.author }}">
+    <title>{{ site_setting.text }}</title>
+    <meta name="description" content="{{ site_setting.description }}">
+    <meta name="keywords" content="{{ site_setting.keywords }}">
+    <meta name="designer" content="{{ site_setting.author }}">
+    <meta name="generator" content="Visual Studio Code">
+    <script src="https://kit.fontawesome.com/7ad9203b12.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'assets\js\jquery.datetimepicker.min.css' %}">
+    <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="LeftMenuIntroduction.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ site_setting.favicon_url }}" type="image/x-icon"/>
+    <link rel="apple-touch-icon" href="{{ site_setting.favicon_url }}">
+
+    {% block extra_css %}
+    {% endblock %}
+
+</head>
+<body style="text-align:center">
+
+
+{% block header %}
+    {% include 'partials/header.html' %}
+
+
+{% endblock %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+    {% endfor %}
+</ul>
+{% endif %}
+{% block content %}
+
+{% endblock %}
+{% block footer %}
+
+    {% include 'partials/footer.html' %}
+
+{% endblock %}
+
+<!-- LOADING AREA  END ====== -->
+
+{% block extra_script %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="{% static 'assets\js\jquery.datetimepicker.full.min.js' %}"></script>
+    <script src="{% static 'assets\js\index.js' %}"></script>
+
+{% endblock %}
+</body>
+</html>

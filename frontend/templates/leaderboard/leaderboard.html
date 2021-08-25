@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="tr">
+{% load i18n %}
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skor Tablosu</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'assets\css\leaderboard.css' %}">
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"> <img src="assets/images/logo.png"></a>
+    </div>
+    <div class="navbar-header navbar-end">
+      <div class="row">
+        <div class="col-md-3">
+          {% if  userprofile.image %}
+          <img src="{{ userprofile.image.url }}" width="48" height="48">
+           {% else %}
+           <img  src="{{ site_setting.default_profile_image.url }}" width="78" height="78"></h2>
+          {% endif %}
+        </div>
+        <div class="col-md-9">
+          <h4><b>{% firstof request.user.get_full_name|capfirst request.user.username  %}</b></h4>
+          <span>Hesabım</span>
+        </div>
+      </div>
+    </div>
+    <div class="navbar-center">
+       <form action="{% url 'user_searchPage' %}" method="get">
+              <input name="q" type="text" placeholder="Arama Yap..."  >
+            </form>    </div>
+  </div>
+</nav>
+
+<div id="wrapper">
+
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+          <li>
+              <a href="#">
+                <img src="assets/images/home.png"> 
+                <span class="title">Anasayfa</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/people.png"> 
+                <span class="title">Üyeler</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/calendar.png"> 
+                <span class="title">Takvim</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/forum.png"> 
+                <span class="title">T3 Forum</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/book.png"> 
+                <span class="title">Dijital Ansiklopedi</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/mentor.png"> 
+                <span class="title">Mentor Bul</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/group.png"> 
+                <span class="title">Gruplar</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/achievement.png"> 
+                <span class="title">Skor Tablosu</span>
+              </a>
+          </li>
+      </ul>
+  </div>
+  <!-- /#sidebar-wrapper -->
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 content">
+          
+          <div class="row text-center"> 
+            <div class="col-md-3">
+                    {% if user_point.image %}
+                <img  src="{{ user_point.image.url }}" width="100" height="100">
+               {% else %}
+                <img  src="{{ site_setting.default_profile_image.url }}" width="78" height="78"></h2>
+              {% endif %}
+            </div>
+            <div class="col-md-9">
+              <h2 class="text-left">{{user_point.user.get_full_name}}
+
+              <h4 class="text-left">{{user_point.point }} puan</h4>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4 class="text-center"><b>Genel Tablo</b></h4>
+
+            <div class="row" id="players">
+              <div class="col-md-4">
+                <div class="player-2 text-right">
+                                  {% if ordered.1.image %}
+                <img  src="{{ ordered.1.image.url }}" class="player-img">
+               {% else %}
+                <img  src="{{ site_setting.default_profile_image.url }}" class="player-img"></h2>
+              {% endif %}
+
+                  <img src="{% static 'assets/images/rozet.png' %}" class="rozet">
+                  <h4 class="text-center"><b>{{ordered.1.total_point}}</b> puan</h4>
+                  <h4 class="text-center">{{ordered.1.user.get_full_name}}</h4>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="player-1">
+                  {% if ordered.0.image %}
+                <img  src="{{ ordered.0.image.url }}" width="250" height="200" class="player-img">
+               {% else %}
+                <img  src="{{ site_setting.default_profile_image.url }}" class="player-img"></h2>
+              {% endif %}
+                  <img src="{% static 'assets/images/gold-rozet.png' %}" class="rozet">
+                  <h4 class="text-center"><b>{{ordered.0.total_point}}</b> puan</h4>
+                  <h4 class="text-center">{{ordered.0.user.get_full_name}}</h4>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="player-3">
+                  {% if ordered.2.image %}
+                <img  src="{{ ordered.2.image.url }}" class="player-img" >
+               {% else %}
+                <img  src="{{ site_setting.default_profile_image.url }}" class="player-img"></h2>
+              {% endif %}
+                  <img src="{% static 'assets/images/bronze-rozet.png' %}" class="rozet">
+                  <h4 class="text-center"><b>{{ordered.2.point}}</b> puan</h4>
+                  <h4 class="text-center">{{ordered.2.user.get_full_name}}</h4>
+                </div>
+              </div>
+            </div>
+
+{% for other in others%}
+            <div class="row">
+              <div class="col-md-1">
+                <h6> {{ forloop.counter }}</h6>
+              </div>
+              <div class="col-md-9">
+                <h4>{{other.user.get_full_name}}</h4>
+              </div>
+              <div class="col-md-2">
+                <h5>{{other.total_point}} puan</h5>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card">
+                <div class="row icon">
+                  <div class="col-md-4">
+                    <img src="assets/images/layer-2.png">
+                  </div>
+                  <div class="col-md-8">
+                    <h4><b>Kitap Kurdu</b></h4>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-1">
+                    <h6>1.</h6>
+                  </div>
+                  <div class="col-md-8">
+                    <h4>Mustafa Kerim Türkan</h4>
+                  </div>
+                  <div class="col-md-3">
+                    <h5>95 puan</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-1">
+                    <h6>2.</h6>
+                  </div>
+                  <div class="col-md-8">
+                    <h4>Ebru Akan</h4>
+                  </div>
+                  <div class="col-md-3">
+                    <h5>90 puan</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-1">
+                    <h6>3.</h6>
+                  </div>
+                  <div class="col-md-8">
+                    <h4>İsmail Aksen</h4>
+                  </div>
+                  <div class="col-md-3">
+                    <h5>85 puan</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-1">
+                    <h6>4.</h6>
+                  </div>
+                  <div class="col-md-8">
+                    <h4>Sevgi Serin</h4>
+                  </div>
+                  <div class="col-md-3">
+                    <h5>80 puan</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+
+  <!-- Sidebar Right-->
+  <div id="sidebar-wrapper-right">
+      <ul class="sidebar-nav">
+          <li>
+              <a href="#">
+                <img src="assets/images/add-btn.png"> 
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/user.png"> 
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/user-1.png">
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/user-2.png"> 
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/user-3.png"> 
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/boo.png">
+              </a>
+          </li>
+      </ul>
+  </div>
+  <!-- /#sidebar-wrapper -->
+</div>
+
+<script src="{% static 'assets\js\leaderboard.js' %}"></script>
+
+</body>
+</html>

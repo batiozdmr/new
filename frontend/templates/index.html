@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load static %}
+{% block extra_css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'assets\css\index.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+
+
+    <style>
+        .form-textarea {
+            display: block;
+            width: 100%;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+    </style>
+
+
+
+    <main>
+        <div class="anasayfa-main">
+
+            <!-- Modal Post -->
+
+            {% include 'partials/left-bar.html' %}
+
+
+            <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+
+
+
+
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold" style="text-align: -webkit-auto;">Gönderi
+                                oluşturun</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+
+
+                        <div class="modal-body mx-3">
+
+                            <div id="ember241"
+                                 class="share-creation-state__member-info artdeco-entity-lockup artdeco-entity-lockup--size-3 ember-view">
+                                <div id="ember242"
+                                     class="artdeco-entity-lockup__image artdeco-entity-lockup__image--type-circle ember-view"
+                                     type="circle">
+                                    {% if userprofile.image %}
+                <img src="{{ userprofile.image.url }}"
+                                         loading="lazy" alt="{{ request.user.username }}" id="ember243" width="48" height="48"
+                                         class="EntityPhoto-circle-2 lazy-image ember-view " style="float: left;">
+            {% else %}
+                                        <img src="{{ site_setting.default_profile_image.url }}" width="48" height="48"
+                                         loading="lazy" alt="{{ request.user.username }}" id="ember243"
+                                         class="EntityPhoto-circle-2 lazy-image ember-view" style="float: left;">
+
+
+            {% endif %}
+
+
+                                </div>
+                                <div id="ember244"
+                                     class="display-flex flex-wrap ml1 flex-column artdeco-entity-lockup__content ember-view">
+                                    <div id="ember245" class="artdeco-entity-lockup__title ember-view" style="float: left; padding: 5px;">
+                                        {{userprofile.user.get_full_name|capfirst}}
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+ <br> <br>
+                            <div class="md-form mb-5">
+
+
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                        <input type="submit" value="Paylaş">
+                        </form>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Post -->
+
+            <div class="hamburger"><i class="fas fa-align-left"></i></div>
+            <div class="anasayfa-main-center">
+                <div class="anasayfa-main-center-left">
+
+                    <div class="anasayfa-main-center-left-header">
+                        <a href="" class="anasayfa-main-center-left-header-profile">
+                            {% if userprofile.image %}
+                            <img src="{{ userprofile.image.url  }}" alt="{{ request.user.username }}"
+                                 {% else %}
+                                 <img src="{{ site_setting.default_profile_image.url  }}" alt="{{ request.user.username }}"
+                                      {% endif %}
+                                 width="48" height="48"></a>
+                        <div class="anasayfa-main-center-left-header-search">
+
+                            <input type="button" value="Bir gönderi başlat" data-toggle="modal"
+                                   data-target="#modalRegisterForm" style="text-align-last: start;"
+                                   name="anasayfa-main-search">
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="anasayfa-main-center-left-paylasim-ikonlari">
+                        <a href="" class="main-center-left-paylasim-fotograf">
+                            <img src="../../static/assets/img/fotograf-icon.png" alt="T3 Main Center Fotograf Icon"
+                                 width="21"
+                                 height="16">
+                            <div>Fotoğraf</div>
+                        </a>
+                        <a href="" class="main-center-left-paylasim-video">
+                            <img src="../../static/assets/img/video-icon.png" alt="T3 Main Center Fotograf Icon"
+                                 width="21"
+                                 height="16">
+                            <div>Video</div>
+                        </a>
+                        <a href="" class="main-center-left-paylasim-etkinlik">
+                            <img src="../../static/assets/img/etkinlik-icon.png" alt="T3 Main Center Fotograf Icon"
+                                 width="19"
+                                 height="18">
+                            <div>Etkinlik</div>
+                        </a>
+                        <a href="" class="main-center-left-paylasim-yazi">
+                            <img src="../../static/assets/img/yazi-icon.png" alt="T3 Main Center Fotograf Icon"
+                                 width="19"
+                                 height="18">
+                            <div>Yazı Yaz</div>
+                        </a>
+                    </div>
+
+                    {% if post_size == 0 %}
+                    <h3>Gönderi Bulunamadı</h3>
+                    {% endif %}
+                    {% for post in postArray %}
+                    <div class="social-flow">
+                        <a href="" class="social-flow-header">
+                            {% if post.user.image %}
+                            <img class="social-flow-header-picture" src="{{ post.user.image.url }}"  width="48"  height="48"  alt="{{ post.user.user.username  }}">
+                            {% else %}
+                            <img class="social-flow-header-picture" src=""  width="48"  height="48"  alt="{{ post.user.user.username }}">
+                            {% endif %}
+                            <div class="social-flow-header-name">{{ post.user.user.get_full_name }}</div>
+                        </a>
+                        <div class="social-flow-body-paragraph">{{ post.content| safe }}
+                        </div>
+                        {% if post.image %}
+                        <img class="social-flow-body-picture" src="{{ post.image.url }}"
+                             alt="Card image cap">
+
+                        {% endif %}
+                        <div class="social-flow-bottom-icons">
+                            <a href="" class="social-flow-bottom-answer"><img src="../../static/assets/img/answer.png"
+                                                                              alt=""></a>
+                            <div class="social-flow-bottom-answer-number">3</div>
+                            <a href="" class="social-flow-bottom-heart"><img class="social-flow-bottom-heart"
+                                                                             src="../../static/assets/img/heart.png"
+                                                                             alt=""></a>
+                            <div class="social-flow-bottom-heart-number">27</div>
+                            <a href="" class="social-flow-bottom-share"><img src="../../static/assets/img/share.png"
+                                                                             alt=""></a>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+                <div class="anasayfa-main-center-right">
+                    <div class="calendar" style="width: 400px;">
+                        <input type="text" id="picker" class="calendar-input">
+                    </div>
+                 {% for event in events %}
+                    <a href="" class="anasayfa-main-center-right-girisimci">
+                        <img src="{{event.image.url}}" width="22" height="15"
+                             alt="T3 Sosyal Ağ Takvim İkonları">
+                        <div class="anasayfa-main-center-right-akran-text">{{event.title}}</div>
+                    </a>
+                 {% endfor event in events %}
+                </div>
+            </div>
+
+            {% include 'partials/right-bar.html' %}
+
+        </div>
+    </main>
+
+
+
+{% endblock content %}
+{% block extra_script %}
+{% endblock extra_script %}

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="tr">
+{% load i18n %}
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forum</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'assets\css\forum.css' %}">
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"> <img src="assets/images/logo.png"></a>
+    </div>
+    <div class="navbar-header navbar-end">
+      <div class="row">
+        <div class="col-md-3">
+          <img src="assets/images/profile.png">
+        </div>
+        <div class="col-md-9">
+          <h4><b>{% firstof request.user.get_full_name|capfirst request.user.username  %}</b></h4>
+          <span>Hesabım</span>
+        </div>
+      </div>
+    </div>
+    <div class="navbar-center">
+     <form action="{% url 'user_searchPage' %}" method="get">
+              <input name="q" type="text" placeholder="Arama Yap..."  >
+            </form>
+    </div>
+  </div>
+</nav>
+
+<div id="wrapper">
+
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+          <li>
+              <a href="#">
+                <img src="assets/images/home.png"> 
+                <span class="title">Anasayfa</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/people.png"> 
+                <span class="title">Üyeler</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/calendar.png"> 
+                <span class="title">Takvim</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/forum.png"> 
+                <span class="title">T3 Forum</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/book.png"> 
+                <span class="title">Dijital Ansiklopedi</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/mentor.png"> 
+                <span class="title">Mentor Bul</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/group.png"> 
+                <span class="title">Gruplar</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/achievement.png"> 
+                <span class="title">Skor Tablosu</span>
+              </a>
+          </li>
+      </ul>
+  </div>
+  <!-- /#sidebar-wrapper -->
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+      <div class="container-fluid">
+
+
+          <div class="row">
+            <div class="col-lg-12">
+
+                <div class="category">
+                    {% for category in  forum_category %}
+                    <a href="" class="btn person">
+                        {% if category.image %}
+                      <img src="{{category.image.url}}">
+                        {% else %}
+                        <img src="">
+                        {% endif %}
+                      <h4>{{category.text}}</h4>
+                    </a>
+                    {% endfor %}
+
+                </div>
+            </div>
+          </div>
+
+          {% for category in  forum_category %}
+          <div class="content">
+            <h4>{{category}} Konusunda Popüler</h4>
+
+              {% if category.forum.count == 0%}
+               <h5> Henüz Soru Eklenmemiş...</h5>
+              {% else %}
+
+              {% for forum in category.forum %}
+            <div class="row item">
+              <div class="col-md-10">
+                 <a href="" class="btn person">
+                <h5> {{ forum.question }} ?</h5>
+                 <a/>
+              </div>
+              <div class="col-md-2">
+                <h6 class="text-right">{{forum.answer.count}} Mesaj</h6>
+              </div>
+            </div>
+
+              {% endfor %}
+               {% endif %}
+          </div>
+           {% endfor %}
+          
+
+
+
+      </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+
+  <!-- Sidebar Right-->
+  <div id="sidebar-wrapper-right">
+      <ul class="sidebar-nav">
+          <li>
+              <a href="#">
+                <img src="assets/images/add-btn.png"> 
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/user.png"> 
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/user-1.png">
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/user-2.png"> 
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/user-3.png"> 
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                <img src="assets/images/boo.png">
+              </a>
+          </li>
+      </ul>
+  </div>
+  <!-- /#sidebar-wrapper -->
+</div>
+
+<script src="{% static 'assets\js\forum.js' %}"></script>
+
+</body>
+</html>

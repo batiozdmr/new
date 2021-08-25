@@ -1,0 +1,32 @@
+{% load i18n %}
+{% load static %}
+<header>
+    <div class="anasayfa-header">
+        <div class="anasayfa-header-logo"><a href=""><img src="{{ site_setting.header_logo.url }}" alt="Logo"></a></div>
+        <div class="anasayfa-header-search">
+
+            <form action="{% url 'user_searchPage' %}" method="get">
+              <input name="q" type="text" placeholder="Arama Yap..."  >
+            </form>
+
+        </div>
+        <i style="display: none;" class="fas fa-search anasayfa-header-search-icon"></i>
+
+
+        <a href="">
+            <div class="anasayfa-header-profile-picture">{% if userprofile.image %}
+                <img src="{{ userprofile.image.url }}" alt="{{ request.user.username }}" width="48" height="48">
+            {% else %}
+                <img src="{{ site_setting.default_profile_image.url }}" alt="{{ request.user.username }}" width="48" height="48">
+
+            {% endif %}</div>
+            <div class="anasayfa-header-profile">
+                <div class="anasayfa-header-profile-name"
+                     style="width: max-content;">{% firstof request.user.get_full_name request.user.username  %}</div>
+                <div class="anasayfa-header-profile-text">Hesabım</div>
+            </div>
+        </a>
+
+
+    </div>
+</header>

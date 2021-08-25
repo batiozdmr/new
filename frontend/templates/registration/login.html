@@ -1,0 +1,83 @@
+{% load i18n %}
+{% load static %}
+{% block extra_css %}
+
+{% endblock extra_css %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Language" content="tr">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Competible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link type="image/png" rel="icon" sizes="91x80" href="../Resimler/t3_favicon.png">
+    <meta name="robots" content="index, follow, noarchive">
+    <meta name="revisit-after" content="7 Days">
+    <meta name="rating" content="general">
+    <meta name="copyright" content="Copyright &copy;">
+    <!-- <meta name="reply-to" content=""> -->
+    <meta name="author" content="Abdullah Şentürk - abdullahsenturk93@gmail.com">
+    <meta name="designer" content="Abdullah Şentürk">
+    <meta name="generator" content="Visual Studio Code">
+    <title>T3 Sosyal Ağ Giriş</title>
+    <meta name="description" content="Türkiye Teknoloji Takımı Vakfı">
+    <meta name="keywords" content="türkiye, teknoloji, takım, vakıf, t3">
+    <link type="text/css" rel="stylesheet" href="{% static 'assets\css\login.css' %}">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/7ad9203b12.js" crossorigin="anonymous"></script> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+</head>
+<body style="text-align:center">
+{% block content %}
+    <style>
+        @media screen and (max-width: 960px) {
+            body {
+                background-position: right;
+            }
+        }
+    </style>
+
+    <div class="container">
+        <form action="" method="post" class="sosyal-giris-form">
+            {% csrf_token %}
+            <div class="t3-sosyal-logo"><img src="../../static/assets/img/T3_Sosyal_Logo.png" alt="T3 Sosyal Logo"
+                                             width="130"
+                                             height="122"></div>
+            <div class="form-group-kullanici">
+                <img class="kullanici-adi-logo" src="../../static/assets/img/user.png" alt="Kullanıcı Adı Logo"
+                     width="20"
+                     height="20">
+                <input type="text" class="form-control" name="username" placeholder="Kullanıcı Adı">
+            </div>
+            <div class="form-group-sifre">
+                <img class="kullanici-adi-logo" src="../../static/assets/img/lock.png" alt="Şifre Logo" width="20"
+                     height="20">
+                <input type="password" class="form-control" name="password" id="exampleInputPassword1"
+                       placeholder="Password">
+            </div>
+
+            <div class="sosyal-giris-text">Hesabınız yok mu ? <a href="/account/register/"
+                                                                 style="color: red; text-decoration: none;">Kaydol!</a>
+            </div>
+            <button type="submit" class="giris-yap">GİRİŞ YAP</button>
+            <!--
+            <div class="sifremi-unuttum"><a href="">Şifremi Unuttum</a></div>
+            -->
+        </form>
+    </div>
+{% endblock %}
+
+{% block extra_script %}
+
+{% endblock extra_script %}
+
+
+
+
+
+
+

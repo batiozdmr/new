@@ -1,0 +1,255 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+	position: relative;
+    width: 100%;
+    height: 796px;
+	margin:0;
+	padding:0;
+	border:none;
+	outline: none;
+	direction:ltr;
+	overflow-x:hidden;
+	overflow-y:scroll;
+}
+body{
+	position: relative;
+    width: 100%;
+    height: 100%;
+	margin:0;
+	padding:0;
+	border:none;
+	outline:none;
+	background-color: #f1f1f1;
+    background-image: url("/static/assets/img/BG.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+	text-decoration: none;
+	z-index: -1;
+}
+.container{
+	position: relative;
+	width: 100%;
+    height: 100%;
+	margin:0;
+	padding:0;
+	border:none;
+	outline:none;
+}
+.sosyal-giris-form{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	width: 100%;
+    height: 100%;
+	margin:0;
+	padding:0;
+	border:none;
+	outline:none;
+}
+.t3-sosyal-logo{
+	position: absolute;
+	top: 164px;
+	/* left: 46%; */
+	border: none;
+	outline: none;
+	margin: 0px auto;
+}
+.form-group-kullanici{
+	position: absolute;
+	top: 311px;
+	/* left: 40%; */
+	width: 300px;
+	height: 45px;
+	border: 1px solid #ACACAC;
+	border-radius: 20px;
+	background: transparent;
+	margin: 0px auto;
+}
+.kullanici-adi-logo{
+	margin-top: 10px;
+	margin-left: 1px;
+}
+.form-control{
+	float: right;
+	width: 255px;
+	height: 42px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	border: none;
+	outline: none;
+	border-radius: 20px;
+	background: transparent;
+	font-family: 'Montserrat', sans-serif;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 20px;
+	text-decoration: none;
+	color: #282828;
+}
+.form-group-sifre{
+	position: absolute;
+	top: 380px;
+	/* left: 40%; */
+	width: 300px;
+	height: 45px;
+	border: 1px solid #ACACAC;
+	border-radius: 20px;
+	background: transparent;
+	margin: 0px auto;
+}
+.social-media{
+	display: flex;
+	position: absolute;
+	top: 444px;
+	/* left: 40%; */
+	width: 296px;
+	height: 40px;
+	/* border: 1px solid #ACACAC; */
+	background: transparent;
+	margin: 0px auto;
+}
+.facebook-icon{
+	width: 40px;
+	height:40px;
+	border-radius: 50%;
+	background: rgba(243, 243, 243, 1);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+	margin-right: 24px;
+}
+.facebook-icon img{
+	margin-top: 9px;
+}
+.facebook-icon:hover{
+	width: 50px;
+	height:50px;
+	padding-top: 8px;
+}
+.instagram-icon{
+	width: 40px;
+	height:40px;
+	border-radius: 50%;
+	background: rgba(243, 243, 243, 1);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+	margin-right: 24px;
+}
+.instagram-icon img{
+	margin-top: 10px;
+}
+.instagram-icon:hover{
+	width: 50px;
+	height:50px;
+	padding-top: 8px;
+}
+.twitter-icon{
+	width: 40px;
+	height:40px;
+	border-radius: 50%;
+	background: rgba(243, 243, 243, 1);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+	margin-right: 24px;
+}
+.twitter-icon img{
+	margin-top: 12px;
+}
+.twitter-icon:hover{
+	width: 50px;
+	height:50px;
+	padding-top: 8px;
+}
+.hangouts-icon{
+	width: 40px;
+	height:40px;
+	border-radius: 50%;
+	background: rgba(243, 243, 243, 1);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+	margin-right: 24px;
+}
+.hangouts-icon img{
+	margin-top: 12px;
+}
+.hangouts-icon:hover{
+	width: 50px;
+	height:50px;
+	padding-top: 8px;
+}
+.discord-icon{
+	width: 40px;
+	height:40px;
+	border-radius: 50%;
+	background: rgba(243, 243, 243, 1);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+}
+.discord-icon img{
+	margin-top: 12px;
+}
+.discord-icon:hover{
+	width: 50px;
+	height:50px;
+	padding-top: 8px;
+}
+.sosyal-giris-text{
+	position: absolute;
+	top: 450px;
+	width: 222px;
+	height: 20px;
+	border: none;
+	outline: none;
+	margin: 0px auto;
+	font-family: 'Montserrat', sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 20px;
+	text-decoration: none;
+	color: #9F9F9F;
+}
+.giris-yap{
+	position: absolute;
+	top: 480px;
+	width: 300px;
+	height: 45px;
+	border: none;
+	outline: none;
+	margin: 0px auto;
+	border-radius: 20px;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+	background-color: #f8f8f8;
+	font-family: 'Montserrat', sans-serif;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 20px;
+	text-decoration: none;
+	color: #090909;
+	cursor: pointer;
+	transition: .3s ease-in-out all;
+}
+.giris-yap:hover{
+	transition: .3s ease-in-out all;
+	background-color: rgb(226, 225, 225);
+}
+.sifremi-unuttum{
+	position: absolute;
+	top: 550px;
+	width: 300px;
+	height: 20px;
+	margin: 0px auto;
+}
+.sifremi-unuttum a{
+	float: right;
+	text-decoration: none;
+	font-family: 'Montserrat', sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 20px;
+	text-decoration: none;
+	color: #9F9F9F;
+	cursor: pointer;
+}
